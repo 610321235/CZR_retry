@@ -9,18 +9,26 @@ setup ;
 
 % Load character dataset
 imdb = load('data/chars-experiment/netcnn_imdb/imdb.mat') ;
-% imdb = load('data/chars-experiment/netcnn_imdb/CpnSet_fix05_plusSet1_imdb.mat') ;
-% MaskSet = load('MaskSet_All_imdb.mat') ;
-% CpnSet = load('CpnSet_fix05_plusSet1_imdb.mat') ;
+imdata = load('Opfl_imrotate_15_imdb.mat') ;
+len = length(imdata.image_all);
+relen = len/180;
+
+imdb.images.id = [];
+imdb.images.id = 1:len;
+
+lab = imdb.images.label(1:180);
+imdb.images.label = [];
+imdb.images.label = repmat(lab,1,relen);
+
 
 imdb.images.set = [];
-imdb.images.set(1:180) = 1;
-imdb.images.set(181:900) = 2;
+imdb.images.set(1:540) = 1;
+imdb.images.set(541:1260) = 2;
 
-% imdb.images.data = [];
-% imdb.images.data = image_all;
+imdb.images.data = [];
+imdb.images.data = imdata.image_all;
 
-save('data/chars-experiment/imdb.mat', '-struct', 'imdb') ;
+save('data/chars-experiment/opfl_imrotate_15_leave_imdb.mat', '-struct', 'imdb') ;
 
 % -------------------------------------------------------------------------
 % Part 4.2: initialize a CNN architecture
@@ -64,7 +72,7 @@ net.layers(end) = [] ;      %softmaxloss去除
 net.imageMean = imageMean ; %imageMean保存之後還要用
 
 % save('data/chars-experiment/ran3.mat', 'ran') ;
-save('data/chars-experiment/imdb_netcnn.mat', '-struct', 'net') ;
+save('data/chars-experiment/opfl_imrotate_15_leave_imdb_netcnn.mat', '-struct', 'net') ;
 
 % --------------------------------------------------------------------
 function [im, labels] = getBatch(imdb, batch)
