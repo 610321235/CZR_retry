@@ -1,6 +1,5 @@
 clc;clear;
 setup;
-rng(11);
 
 image_true = [];
 image_what = [];
