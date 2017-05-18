@@ -1,9 +1,7 @@
-% Part 4.5: apply the model
-% -------------------------------------------------------------------------
 clc;clear;
 setup;
 rng(11);
-% % Load the CNN learned before
+
 image_true = [];
 image_what = [];
 All_score = [];
