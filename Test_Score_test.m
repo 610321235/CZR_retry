@@ -7,8 +7,8 @@ image_true = [];
 image_what = [];
 All_score = [];
 
-net = load('data/chars-experiment/netcnn_imdb/All_gray_opfl_leaveone1_netcnn.mat') ;
-imdb = load('data/chars-experiment/netcnn_imdb/All_gray_opfl_leaveone1_imdb.mat') ;
+net = load('data/chars-experiment/netcnn_imdb/opfl_netcnn.mat') ;
+imdb = load('data/chars-experiment/netcnn_imdb/opfl_imdb.mat') ;
 
 w = 1;
 for n = 1:180
@@ -37,7 +37,7 @@ for n = 1:180
     All_score(:,n) = res(end).x(:,:,:);
 end
 
-save('data/chars-experiment/Test_Score_opfl_leaveone1.mat', 'All_score') ;
+save('data/chars-experiment/Test_Score_opfl.mat', 'All_score') ;
 
 
 image_label = imdb.test.label(1:n);
